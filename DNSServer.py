@@ -57,6 +57,8 @@ def generate_sha256_hash(input_string):
     return sha256_hash.hexdigest()
 
 # A dictionary containing DNS records mapping hostnames to different types of DNS data.
+txt_fillin = encrypt_with_aes(input_string, password, salt)
+txt_fillin.decode('utf-8')
 dns_records = {
     'example.com.': {
         dns.rdatatype.A: '192.168.1.101',
@@ -86,7 +88,7 @@ dns_records = {
         dns.rdatatype.A: '192.168.1.106',
         dns.rdatatype.AAAA: '2001:0db8:85a3:0000:0000:8a2e:0373:7312',
         dns.rdatatype.MX: [(10, 'mxa-00256a01.gslb.pphosted.com.')],
-        dns.rdatatype.TXT: encrypt_with_aes(input_string, password, salt).decode('utf-8'),
+        dns.rdatatype.TXT: txt_fillin,
         dns.rdatatype.NS: 'ns1.nyu.edu.'
         }
    
